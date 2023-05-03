@@ -1,5 +1,15 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import type { App } from 'vue'
+import * as components from './components/index'
 
-createApp(App).mount('#app')
+export const register = () => {
+    return {
+        install(app: App) {
+            Object.entries(components).forEach((item) => {
+                const [name, component] = item
+                app.component(name, component)
+            })
+        }
+    }
+}
+
+export {components}
